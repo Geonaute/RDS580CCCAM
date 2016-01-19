@@ -21,7 +21,8 @@ public class Mycccam24 implements FreeClinesScrapper {
 	private String BASE_URL_3 = "http://www.mycccam24.com/3sv2016.php";
 	private String BASE_URL_4 = "http://www.mycccam24.com/4sv2016.php";
 	private String BASE_URL_5 = "http://www.mycccam24.com/5sv2016.php";
-	private String[] URLS = new String[]{BASE_URL_1, BASE_URL_2, BASE_URL_3, BASE_URL_4, BASE_URL_5};
+	private String BASE_URL_6 = "http://www.mycccam24.com/6sv2016.php";
+	private String[] URLS = new String[]{BASE_URL_1, BASE_URL_2, BASE_URL_3, BASE_URL_4, BASE_URL_5, BASE_URL_6};
 	private String default_hops;
 	
 	private Mycccam24(){}
