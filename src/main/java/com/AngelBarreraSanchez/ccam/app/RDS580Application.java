@@ -14,6 +14,7 @@ import com.AngelBarreraSanchez.ccam.scrapper.impl.CCcam4you;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Cccamgenerator;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.FC003;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Helala0;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.Jokercccam;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Maniaforu;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Mycccam24;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.New0;
@@ -93,6 +94,9 @@ public class RDS580Application {
 			
 			FreeClinesScrapper universalcccam = new Universalcccam(DEFAULT_HOPES);
 			clines.addAll(universalcccam.getLines());
+			
+			FreeClinesScrapper jokercccam = new Jokercccam(DEFAULT_HOPES);
+			clines.addAll(jokercccam.getLines());
 			
 			CCCAMFileGenerator fileGen = null;
 			if(args.length==2 && args[1].equals("plain")){
