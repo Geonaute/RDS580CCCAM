@@ -96,8 +96,9 @@ public class RDS580Application {
 //			FreeClinesScrapper jokercccam = new Jokercccam(DEFAULT_HOPES);
 //			clines.addAll(jokercccam.getLines());
 			
-			FreeClinesScrapper khaled = new Khaled(DEFAULT_HOPES);
-			clines.addAll(khaled.getLines());
+			//DOES NOT WORK
+//			FreeClinesScrapper khaled = new Khaled(DEFAULT_HOPES);
+//			clines.addAll(khaled.getLines());
 			
 			CCCAMFileGenerator fileGen = null;
 			if(args.length==2 && args[1].equals("plain")){
