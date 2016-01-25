@@ -56,8 +56,7 @@ public class Shashatv implements FreeClinesScrapper {
 			final String pass = tokens[3].trim();
 			clines.add(new CCCAMEntity(host, port, user, pass, default_hops));
 		} catch (Exception e) {
-			System.out.println("Error en " + BASE_URL);
-			System.out.println("Error: " + e.getMessage());
+			System.out.println("Error en " + BASE_URL+ ". " +e.getMessage());
 		}
 		return clines;
 	}
