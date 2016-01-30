@@ -6,7 +6,6 @@ import java.util.List;
 import org.jsoup.Connection.Method;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 import com.AngelBarreraSanchez.ccam.CCCAMEntity;
 import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;

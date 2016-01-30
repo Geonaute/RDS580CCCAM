@@ -2,9 +2,7 @@ package com.AngelBarreraSanchez.ccam.scrapper.impl;
 
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.jsoup.Connection.Method;
 import org.jsoup.Connection.Response;
