@@ -12,6 +12,7 @@ import com.AngelBarreraSanchez.ccam.scrapper.impl.AllCccam;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.BambooCCcam;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.BossCCcamEMAIL;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Cccamgenerator;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.Damidi;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.FC003;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Helala0;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Khaled;
@@ -108,6 +109,9 @@ public class RDS580Application {
 			
 			FreeClinesScrapper bossCCcamEMAIL = new BossCCcamEMAIL(DEFAULT_HOPES);
 			clines.addAll(bossCCcamEMAIL.getLines());
+			
+			FreeClinesScrapper damidi = new Damidi(DEFAULT_HOPES);
+			clines.addAll(damidi.getLines());
 			
 			CCCAMFileGenerator fileGen = null;
 			if(args.length==2 && args[1].equals("plain")){

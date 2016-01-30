@@ -30,11 +30,6 @@ public class BossCCcamEMAIL implements FreeClinesScrapper {
 		this.default_hops = default_hops;
 	}
 	
-	public static void main(String[] args) {
-		BossCCcamEMAIL b = new BossCCcamEMAIL();
-		b.getLines();
-	}
-	
 	/**
 	 * Implementation method
 	 */

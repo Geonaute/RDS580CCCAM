@@ -35,11 +35,6 @@ public class AllCccam implements FreeClinesScrapper {
 		this.default_hops = default_hops;
 	}
 	
-	public static void main(String[] args) {
-		AllCccam a = new AllCccam();
-		System.out.println(a.getLines());
-	}
-	
 	/**
 	 * Implementation method
 	 */
