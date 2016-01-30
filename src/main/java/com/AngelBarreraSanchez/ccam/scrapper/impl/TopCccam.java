@@ -30,11 +30,6 @@ public class TopCccam implements FreeClinesScrapper {
 		this.default_hops = default_hops;
 	}
 	
-	public static void main(String[] args) {
-		TopCccam t = new TopCccam();
-		t.getLines();
-	}
-
 	/**
 	 * Implementation method
 	 */
