@@ -33,6 +33,7 @@ public class Khaled implements FreeClinesScrapper {
 	 */
 	public List<CCCAMEntity> getLines() {
 		List<CCCAMEntity> clines = new ArrayList<CCCAMEntity>();
+		String linesweb = "";
 		try {
 			Response res = Jsoup.connect(BASE_URL)
 				.data("user",System.currentTimeMillis()+"")
@@ -41,7 +42,7 @@ public class Khaled implements FreeClinesScrapper {
 				.referrer(BASE_URL)
 				.method(Method.POST)
 				.execute();	
-			final String linesweb = res.body();
+			linesweb = res.body();
 			String lineSearch1 = " C: ";
 			String lineSearch2 = " :|: and it will  expire";
 			String line = linesweb.substring(linesweb.indexOf(lineSearch1) +  lineSearch1.length(), linesweb.indexOf(lineSearch2,linesweb.indexOf(lineSearch1) +  lineSearch1.length()));
@@ -53,7 +54,20 @@ public class Khaled implements FreeClinesScrapper {
 			final String pass = tokens[3].trim();
 			clines.add(new CCCAMEntity(host, port, user, pass, default_hops));
 		} catch (Exception e) {
-			System.out.println("Error en " + BASE_URL+ ". " +e.getMessage());
+			try{
+				String lineSearch1 = "C: ";
+				String lineSearch2 = " <br> host";
+				String line = linesweb.substring(linesweb.indexOf(lineSearch1) +  lineSearch1.length(), linesweb.indexOf(lineSearch2,linesweb.indexOf(lineSearch1) +  lineSearch1.length()));
+				line = line.trim();
+				final String[] tokens = line.split(" ");
+				final String host = tokens[0].trim();
+				final String port = tokens[1].trim();
+				final String user = tokens[2].trim();
+				final String pass = tokens[3].trim();
+				clines.add(new CCCAMEntity(host, port, user, pass, default_hops));	
+			}catch(Exception e2){
+				System.out.println("Error en " + BASE_URL+ ". " +e2.getMessage());
+			}
 		}
 		return clines;
 	}

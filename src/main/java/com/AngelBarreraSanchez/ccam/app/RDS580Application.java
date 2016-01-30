@@ -10,15 +10,15 @@ import com.AngelBarreraSanchez.ccam.fileGenerator.impl.RDS580CCCAMFileGenerator;
 import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.AllCccam;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.BambooCCcam;
-import com.AngelBarreraSanchez.ccam.scrapper.impl.CCcam4you;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.BossCCcamEMAIL;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Cccamgenerator;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.FC003;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Helala0;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.Khaled;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Maniaforu;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Mycccam24;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.New0;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Universalcccam;
-import com.AngelBarreraSanchez.ccam.scrapper.impl.WebSat;
 
 /**
  * The main class. 
@@ -64,18 +64,15 @@ public class RDS580Application {
 			FreeClinesScrapper mycccam24 = new Mycccam24(DEFAULT_HOPES);
 			clines.addAll(mycccam24.getLines());
 			
-			//FAILING AT 24/01/2016
-			//DOES NOT WORK - CHECK AGAIN ANOTHER DAY
+			//DOES NOT WORK
 //			FreeClinesScrapper shashatv = new Shashatv(DEFAULT_HOPES);
 //			clines.addAll(shashatv.getLines());
 			
-			//FAILING AT 24/01/2016
-			//DOES NOT WORK - CHECK AGAIN ANOTHER DAY
+			//DOES NOT WORK
 //			FreeClinesScrapper cccamWorld = new CccamWorld(DEFAULT_HOPES);
 //			clines.addAll(cccamWorld.getLines());
 			
-			//FAILING AT 24/01/2016
-			//DOES NOT WORK - CHECK AGAIN ANOTHER DAY
+			//DOES NOT WORK
 //			FreeClinesScrapper cgenerator = new Cgenerator(DEFAULT_HOPES);
 //			clines.addAll(cgenerator.getLines());
 			
@@ -86,8 +83,9 @@ public class RDS580Application {
 //			FreeClinesScrapper sat2arab = new Sat2arab(DEFAULT_HOPES);
 //			clines.addAll(sat2arab.getLines());
 			
-			FreeClinesScrapper cccam4you  = new CCcam4you (DEFAULT_HOPES);
-			clines.addAll(cccam4you.getLines());
+			//DOES NOT WORK
+//			FreeClinesScrapper cccam4you  = new CCcam4you (DEFAULT_HOPES);
+//			clines.addAll(cccam4you.getLines());
 			
 			FreeClinesScrapper universalcccam = new Universalcccam(DEFAULT_HOPES);
 			clines.addAll(universalcccam.getLines());
@@ -96,12 +94,20 @@ public class RDS580Application {
 //			FreeClinesScrapper jokercccam = new Jokercccam(DEFAULT_HOPES);
 //			clines.addAll(jokercccam.getLines());
 			
-			//DOES NOT WORK
-//			FreeClinesScrapper khaled = new Khaled(DEFAULT_HOPES);
-//			clines.addAll(khaled.getLines());
+			//WORKS ONLY ONCE PER IP
+			FreeClinesScrapper khaled = new Khaled(DEFAULT_HOPES);
+			clines.addAll(khaled.getLines());
 			
-			FreeClinesScrapper webSat = new WebSat(DEFAULT_HOPES);
-			clines.addAll(webSat.getLines());
+			//DOES NOT WORK
+//			FreeClinesScrapper topCccam = new TopCccam(DEFAULT_HOPES);
+//			clines.addAll(topCccam.getLines());
+			
+			//DOES NOT WORK
+//			FreeClinesScrapper webSat = new WebSat(DEFAULT_HOPES);
+//			clines.addAll(webSat.getLines());
+			
+			FreeClinesScrapper bossCCcamEMAIL = new BossCCcamEMAIL(DEFAULT_HOPES);
+			clines.addAll(bossCCcamEMAIL.getLines());
 			
 			CCCAMFileGenerator fileGen = null;
 			if(args.length==2 && args[1].equals("plain")){
