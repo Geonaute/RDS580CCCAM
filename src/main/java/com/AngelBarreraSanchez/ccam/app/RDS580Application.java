@@ -10,6 +10,7 @@ import com.AngelBarreraSanchez.ccam.fileGenerator.impl.RDS580CCCAMFileGenerator;
 import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.AllCccam;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.BambooCCcam;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.BossCCcamEMAIL;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Cccamgenerator;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.FC003;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Helala0;
@@ -18,7 +19,6 @@ import com.AngelBarreraSanchez.ccam.scrapper.impl.Maniaforu;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Mycccam24;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.New0;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Universalcccam;
-import com.AngelBarreraSanchez.ccam.scrapper.impl.WebSat;
 
 /**
  * The main class. 
@@ -102,8 +102,12 @@ public class RDS580Application {
 //			FreeClinesScrapper topCccam = new TopCccam(DEFAULT_HOPES);
 //			clines.addAll(topCccam.getLines());
 			
-			FreeClinesScrapper webSat = new WebSat(DEFAULT_HOPES);
-			clines.addAll(webSat.getLines());
+			//DOES NOT WORK
+//			FreeClinesScrapper webSat = new WebSat(DEFAULT_HOPES);
+//			clines.addAll(webSat.getLines());
+			
+			FreeClinesScrapper bossCCcamEMAIL = new BossCCcamEMAIL(DEFAULT_HOPES);
+			clines.addAll(bossCCcamEMAIL.getLines());
 			
 			CCCAMFileGenerator fileGen = null;
 			if(args.length==2 && args[1].equals("plain")){
