@@ -17,7 +17,7 @@ import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
  * @author Angel Barrera Sanchez
  */
 public class BambooCCcam implements FreeClinesScrapper {
-	private String BASE_URL = "http://151.80.128.35/verif.php";
+	private String BASE_URL = "http://bamboo-cccam.com/verif.php";
 	private String default_hops;
 	
 	private BambooCCcam(){}
@@ -29,6 +29,11 @@ public class BambooCCcam implements FreeClinesScrapper {
 		this.default_hops = default_hops;
 	}
 	
+	public static void main(String[] args) {
+		BambooCCcam b = new BambooCCcam();
+		b.getLines();
+	}
+	
 	/**
 	 * Implementation method
 	 */
@@ -36,7 +41,7 @@ public class BambooCCcam implements FreeClinesScrapper {
 		List<CCCAMEntity> clines = new ArrayList<CCCAMEntity>();
 		try {
 			
-			Response res = Jsoup.connect("http://151.80.128.35/js/contact_me.js")
+			Response res = Jsoup.connect("http://bamboo-cccam.com/js/contact_me.js")
 				.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
 				.referrer(BASE_URL)
 				.method(Method.GET)
