@@ -1,6 +1,5 @@
 package com.AngelBarreraSanchez.ccam.scrapper.impl;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,25 +12,25 @@ import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
 
 /**
  * Implementation of FreeClinesScrapper
- * Get a Cline from http://151.80.128.35/verif.php
+ * Get a Cline from http://chaherstar.zapto.org/free/index.php
  * @author Angel Barrera Sanchez
  */
-public class BambooCCcam implements FreeClinesScrapper {
-	private String BASE_URL = "http://bamboo-cccam.com/verif.php";
+public class Chaherdztv implements FreeClinesScrapper {
+	private String BASE_URL = "http://chaherstar.zapto.org/free/index.php";
 	private String default_hops;
 	
-	private BambooCCcam(){}
+	private Chaherdztv(){}
 	
 	/**
 	 * @param default_hops
 	 */
-	public BambooCCcam(String default_hops) {
+	public Chaherdztv(String default_hops) {
 		this.default_hops = default_hops;
 	}
 	
 	public static void main(String[] args) {
-		BambooCCcam b = new BambooCCcam();
-		b.getLines();
+		Chaherdztv c = new Chaherdztv();
+		c.getLines();
 	}
 	
 	/**
@@ -40,46 +39,25 @@ public class BambooCCcam implements FreeClinesScrapper {
 	public List<CCCAMEntity> getLines() {
 		List<CCCAMEntity> clines = new ArrayList<CCCAMEntity>();
 		try {
-			
-			Response res = Jsoup.connect("http://bamboo-cccam.com/js/contact_me.js")
+			Response res = Jsoup.connect(BASE_URL)
+				.data("user","RDS580"+System.currentTimeMillis())
+				.data("pass","RDS580")
+				.data("submit","Activate!")
 				.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
 				.referrer(BASE_URL)
-				.method(Method.GET)
-				.ignoreContentType(true)
+				.method(Method.POST)
 				.execute();	
-				
 			final String linesweb = res.body();
-			final String lineSearch1 = "C: ";
-			final String lineSearch2 = " \" + firstName";
+			String lineSearch1 = "C: ";
+			String lineSearch2 = " :|: and it will  ";
 			String line = linesweb.substring(linesweb.indexOf(lineSearch1) +  lineSearch1.length(), linesweb.indexOf(lineSearch2,linesweb.indexOf(lineSearch1) +  lineSearch1.length()));
 			line = line.trim();
 			final String[] tokens = line.split(" ");
 			final String host = tokens[0].trim();
 			final String port = tokens[1].trim();
-			
-			
-			String username = System.currentTimeMillis()+"";
-			//LAST 6 numbers, pseudo random
-			username = "A" + username.substring(username.length()-6) + "Z";
-			final String pass = "RDS580";
-			
-			res = Jsoup.connect(BASE_URL)
-				.data("user", username)
-				.data("pass",pass)
-				.data("name", "")
-				.data("email","")
-				.data("phone","")
-				.data("message", "")
-				.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
-				.referrer(BASE_URL)
-				.method(Method.POST)
-				.execute();	
-			
-			//IN JS SAYS THAT IF IT WORKS, IT MOUNT A CLINE WITH THE HOST AND PORT FROM JSON AND USER
-			//AND PASS OF USER INPUT
-			if(res.statusCode()==200){
-				clines.add(new CCCAMEntity(host, port, username, pass, default_hops));
-			}
+			final String user = tokens[2].trim();
+			final String pass = tokens[3].trim();
+			clines.add(new CCCAMEntity(host, port, user, pass, default_hops));
 		} catch (Exception e) {
 			System.out.println("Error en " + BASE_URL+ ". " +e.getMessage());
 		}
