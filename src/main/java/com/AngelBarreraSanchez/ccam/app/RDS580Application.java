@@ -77,7 +77,6 @@ public class RDS580Application {
 //			FreeClinesScrapper shashatv = new Shashatv(DEFAULT_HOPES);
 //			clines.addAll(shashatv.getLines());
 			
-			//DOES NOT WORK
 			FreeClinesScrapper cccamWorld = new CccamWorld(DEFAULT_HOPES);
 			clines.addAll(cccamWorld.getLines());
 			
@@ -88,11 +87,9 @@ public class RDS580Application {
 			FreeClinesScrapper bambooCCcam = new BambooCCcam(DEFAULT_HOPES);
 			clines.addAll(bambooCCcam.getLines());
 			
-			//DOES NOT WORK
 			FreeClinesScrapper sat2arab = new Sat2arab(DEFAULT_HOPES);
 			clines.addAll(sat2arab.getLines());
 			
-			//DOES NOT WORK
 			FreeClinesScrapper cccam4you  = new CCcam4you (DEFAULT_HOPES);
 			clines.addAll(cccam4you.getLines());
 			
@@ -100,7 +97,6 @@ public class RDS580Application {
 //			FreeClinesScrapper universalcccam = new Universalcccam(DEFAULT_HOPES);
 //			clines.addAll(universalcccam.getLines());
 			
-			//DOES NOT WORK
 			FreeClinesScrapper jokercccam = new Jokercccam(DEFAULT_HOPES);
 			clines.addAll(jokercccam.getLines());
 			
@@ -108,11 +104,9 @@ public class RDS580Application {
 			FreeClinesScrapper khaled = new Khaled(DEFAULT_HOPES);
 			clines.addAll(khaled.getLines());
 			
-			//DOES NOT WORK
 			FreeClinesScrapper topCccam = new TopCccam(DEFAULT_HOPES);
 			clines.addAll(topCccam.getLines());
 			
-			//DOES NOT WORK
 			FreeClinesScrapper webSat = new WebSat(DEFAULT_HOPES);
 			clines.addAll(webSat.getLines());
 			
