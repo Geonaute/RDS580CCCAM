@@ -13,6 +13,7 @@ import com.AngelBarreraSanchez.ccam.scrapper.impl.BambooCCcam;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.BossCCcamEMAIL;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Cccamgenerator;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Damidi;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.Demed;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.FC003;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Helala0;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Khaled;
@@ -27,7 +28,7 @@ import com.AngelBarreraSanchez.ccam.scrapper.impl.Universalcccam;
  */
 public class RDS580Application {
 	
-	private final static String DEFAULT_HOPES = "1";
+	private final static String DEFAULT_HOPES = "0";
 	
 	/**
 	 * Main function of the program
@@ -112,6 +113,9 @@ public class RDS580Application {
 			
 			FreeClinesScrapper damidi = new Damidi(DEFAULT_HOPES);
 			clines.addAll(damidi.getLines());
+			
+			FreeClinesScrapper demed = new Demed(DEFAULT_HOPES);
+			clines.addAll(demed.getLines());
 			
 			CCCAMFileGenerator fileGen = null;
 			if(args.length==2 && args[1].equals("plain")){
