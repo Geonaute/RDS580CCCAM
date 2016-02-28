@@ -42,6 +42,14 @@ public class RDS580Application {
 		}else{
 			List<CCCAMEntity> clines = new ArrayList<>();
 			
+			
+			if (args.length==3 && args[1] == "-l") {
+				LoadTemplate.loadFile(clines, args[2]);
+			} 
+			
+			FreeClinesScrapper greencccam = new Greencccamfree(DEFAULT_HOPES);
+			clines.addAll(greencccam.getLines());
+			
 			FreeClinesScrapper maniaforu = new Maniaforu(DEFAULT_HOPES);
 			clines.addAll(maniaforu.getLines());
 			
