@@ -10,24 +10,10 @@ import org.jsoup.Jsoup;
 import com.AngelBarreraSanchez.ccam.CCCAMEntity;
 import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.InetAddress;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.jsoup.Connection.Method;
-import org.jsoup.Connection.Response;
-import org.jsoup.Jsoup;
-import org.jsoup.helper.HttpConnection.Request;
-
 /**
  * Implementation of FreeClinesScrapper
- * Get a Cline from http://c-generator.blogsyte.com/freee/index.php
- * @author Angel Barrera Sanchez
+ * Get a Cline from http://greencccamfree.ddns.net/genf.php
+ * @author Willyn
  */
 public class Greencccamfree implements FreeClinesScrapper {
 	private String BASE_URL = "http://greencccamfree.ddns.net/genf.php";
@@ -48,15 +34,13 @@ public class Greencccamfree implements FreeClinesScrapper {
 	public List<CCCAMEntity> getLines() {
 		List<CCCAMEntity> clines = new ArrayList<CCCAMEntity>();
 		try {
-			String thisIp = InetAddress.getLocalHost().getHostAddress();
-			URL ipAdress;
-            ipAdress = new URL("http://myexternalip.com/raw");
-            BufferedReader in = new BufferedReader(new InputStreamReader(ipAdress.openStream()));
-            String ip = in.readLine();
-            
-      		Response res = Jsoup.connect(BASE_URL)
-				.data("clav1","RDS580"+System.currentTimeMillis())
-				.data("arrob1","RDS580"+System.currentTimeMillis()+"@gmail.com")
+			Response res = Jsoup.connect("http://myexternalip.com/raw")
+					.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
+					.method(Method.GET).execute();
+			final String ip = res.body().trim();
+
+			res = Jsoup.connect(BASE_URL).data("clav1","RDS580"+System.currentTimeMillis())
+				.data("arrob1","RDS580"+System.currentTimeMillis()+"@yopmail.com")
 				.data("u1", ip)
 				.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
 				.referrer(BASE_URL)
@@ -68,7 +52,6 @@ public class Greencccamfree implements FreeClinesScrapper {
 			String line = linesweb.substring(linesweb.indexOf(lineSearch1) +  lineSearch1.length(), linesweb.indexOf(lineSearch2,linesweb.indexOf(lineSearch1) +  lineSearch1.length()));
 			line = line.replaceAll("\\s+", " ");
 			line = line.trim();
-			System.out.println(line);
 			final String[] tokens = line.split(" ");
 			final String host = tokens[0].trim();
 			final String port = tokens[1].trim();
