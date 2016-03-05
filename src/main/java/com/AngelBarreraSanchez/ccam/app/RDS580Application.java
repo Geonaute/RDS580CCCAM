@@ -1,10 +1,13 @@
 package com.AngelBarreraSanchez.ccam.app;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.AngelBarreraSanchez.ccam.CCCAMEntity;
 import com.AngelBarreraSanchez.ccam.fileGenerator.CCCAMFileGenerator;
+import com.AngelBarreraSanchez.ccam.fileGenerator.impl.LoadTemplate;
 import com.AngelBarreraSanchez.ccam.fileGenerator.impl.PlainCCCAMFileGenerator;
 import com.AngelBarreraSanchez.ccam.fileGenerator.impl.RDS580CCCAMFileGenerator;
 import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
@@ -15,6 +18,7 @@ import com.AngelBarreraSanchez.ccam.scrapper.impl.CccamWorld;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Damidi;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Demed;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.FC003;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.Greencccamfree;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Helala0;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Khaled;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Maniaforall;
@@ -34,13 +38,25 @@ public class RDS580Application {
 	
 	/**
 	 * Main function of the program
-	 * @param args -> args[0] must be the output path
+	 * @param 	args -> args[0] must be the output path (mandatory)
+	 * 			args -> args[1] must be format. plain or rds580 (optional)
+	 * 			args -> args[2] path of the lines to be loaded at first (optional)
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, IOException {
 		if(args.length<1){
 			System.err.println("Needs at least 1 parameter. The output path.");
 		}else{
 			List<CCCAMEntity> clines = new ArrayList<>();
+			
+			
+			if (args.length==3) {
+				LoadTemplate.loadFile(clines, args[2]);
+			} 
+			
+			FreeClinesScrapper greencccam = new Greencccamfree(DEFAULT_HOPES);
+			clines.addAll(greencccam.getLines());
 			
 			FreeClinesScrapper maniaforu = new Maniaforu(DEFAULT_HOPES);
 			clines.addAll(maniaforu.getLines());
@@ -122,7 +138,7 @@ public class RDS580Application {
 //			clines.addAll(cccamgenerator.getLines());
 			
 			CCCAMFileGenerator fileGen = null;
-			if(args.length==2 && args[1].equals("plain")){
+			if(args.length>=2 && args[1].equals("plain")){
 				fileGen = new PlainCCCAMFileGenerator();
 			}else{
 				fileGen = new RDS580CCCAMFileGenerator();
