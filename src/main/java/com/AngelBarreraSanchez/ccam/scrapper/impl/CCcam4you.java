@@ -17,7 +17,7 @@ import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
  * @author Angel Barrera Sanchez
  */
 public class CCcam4you implements FreeClinesScrapper {
-	private String BASE_URL = "http://cccam4you.com/FREE/get.php";
+	private String BASE_URL = "http://cccamgenerator.com/cccam/get.php";
 	private String default_hops;
 	
 	private CCcam4you(){}
