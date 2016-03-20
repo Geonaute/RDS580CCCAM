@@ -6,35 +6,32 @@ import java.util.List;
 
 import org.jsoup.Connection.Method;
 import org.jsoup.Connection.Response;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.jsoup.Jsoup;
 
 import com.AngelBarreraSanchez.ccam.CCCAMEntity;
 import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
-import com.AngelBarreraSanchez.ccam.util.AdflyDecode;
 
 /**
  * Implementation of FreeClinesScrapper
- * Get a Cline from http://call-share.ddns.net";
+ * Get a Cline from http://testserver.no-ip.biz/ServerTest/
  * @author Angel Barrera Sanchez
  */
-public class Zetita implements FreeClinesScrapper {
-	private String BASE_URL = "http://call-share.ddns.net";
+public class Testserver implements FreeClinesScrapper {
+	private String BASE_URL = "http://testserver.no-ip.biz/ServerTest/";
 	private String default_hops;
 	
-	private Zetita(){}
+	private Testserver(){}
 	
 	/**
 	 * @param default_hops
 	 */
-	public Zetita(String default_hops) {
+	public Testserver(String default_hops) {
 		this.default_hops = default_hops;
 	}
 	
 	public static void main(String[] args) {
-		Zetita z = new Zetita();
-		z.getLines();
+		Testserver t = new Testserver();
+		t.getLines();
 	}
 	
 	/**
@@ -43,37 +40,16 @@ public class Zetita implements FreeClinesScrapper {
 	public List<CCCAMEntity> getLines() {
 		List<CCCAMEntity> clines = new ArrayList<CCCAMEntity>();
 		try {
-			Response res1 = Jsoup.connect(BASE_URL)
-					.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
-					.referrer(BASE_URL)
-					.method(Method.GET)
-					.execute();
-			Document doc1 = Jsoup.parse(res1.body());
-			Elements forms = doc1.getElementsByClass("bouton");
-			String url = forms.get(0).attr("href");
-			
-			String urlDecoded = AdflyDecode.getInstance().decode(url);
-			
-			Response res2 = Jsoup.connect(urlDecoded)
-					.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
-					.referrer(BASE_URL)
-					.method(Method.GET)
-					.execute();
-			Document doc2 = Jsoup.parse(res2.body());
-			Elements forms2 = doc2.getElementsByTag("form");
-			String url2 = forms2.get(0).attr("action");
-			
-			Response res = Jsoup.connect(BASE_URL+url2)
-				.data("user","RDS580"+System.currentTimeMillis())
-				.data("pass","RDS580")
-				.data("yes","yes")
+			Response res = Jsoup.connect(BASE_URL)
+				.data("Username","RDS580"+System.currentTimeMillis())
+				.data("cline","")
 				.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
-				.referrer(BASE_URL+url2)
+				.referrer(BASE_URL)
 				.method(Method.POST)
 				.execute();	
 			final String linesweb = res.body();
-			String lineSearch1 = "C: ";
-			String lineSearch2 = "<FONT";
+			String lineSearch1 = " C: ";
+			String lineSearch2 = "</font>";
 			String line = linesweb.substring(linesweb.indexOf(lineSearch1) +  lineSearch1.length(), linesweb.indexOf(lineSearch2,linesweb.indexOf(lineSearch1) +  lineSearch1.length()));
 			line = line.trim();
 			final String[] tokens = line.split(" ");
