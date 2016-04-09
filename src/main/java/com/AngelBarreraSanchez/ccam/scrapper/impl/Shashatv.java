@@ -17,7 +17,7 @@ import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
  */
 public class Shashatv implements FreeClinesScrapper {
 	
-	private String BASE_URL = "http://shasha-tv.blogsyte.com/free/index.php";
+	private String BASE_URL = "http://shasha-tv.blogsyte.com/hack7/index.php";
 	private String default_hops;
 	
 	private Shashatv(){}
@@ -40,7 +40,7 @@ public class Shashatv implements FreeClinesScrapper {
 					.data("pass","hack-sat.net")
 					.data("submit","Active+User!")
 					.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
-					.referrer("http://shasha-tv.blogsyte.com/free/")
+					.referrer("http://shasha-tv.blogsyte.com/")
 					.method(Method.POST)
 					.execute();	
 			

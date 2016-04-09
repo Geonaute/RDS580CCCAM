@@ -49,13 +49,13 @@ public class WebSat implements FreeClinesScrapper {
 			String urlDecoded = AdflyDecode.getInstance().decode(url);
 			
 			Response res = Jsoup.connect(urlDecoded)
-				.data("nom","RDS580"+System.currentTimeMillis())
-				.data("user","RDS580"+System.currentTimeMillis())
-				.data("pass","RDS580")
-				.data("yes","yes")
-				.data("g-recaptcha-response","03AHJ_Vut1DG-0-XmxJxjNva4T9ln_l6qM1zO2UIYupo74OCV_yyqMlO6GNCfYf6I8E-wDJOz2G2zLyRB5TQD26rwwIRQ3w8UvrafY5pQnox7ICaZKltRH7DR13wwgISmNu5N73hFXWrCFW1oTNETePon_L_jupclyCiLztAnJQw5NFtOTOKSYQcOZ4IJNkmGtRVff3AwXCzOJDkz29oLYxQhfJ9TCpcjmIQ8fhCPP467vwgv7ygZpKHAC3sZqBLHxcdkXpY036TKTBCRA4_CDsDWuDyJMqmGMWwpudqOEezXcZnEZZ_gCjZ_IPWm_Hut0pLZlnUXLQkOvsmy3_aBXwuT51AXFPmi7mKSuBZ5F1cWCJqjsTortJiXT7AxVsuGc31A2DKs1qRLIiTdRShtfpDQB1_llyFlCzoSuJyZkyrZL85o41CcivAOEsfgze72nwM-k__aO_xKCoJR5tC9rPyr0MlgqPjf2xcvTppkbGOY2PDbP8CTG3wNda_weLLXLZgRF94yq_Z8gXShefVQMkTPQ8mFsvFw0VXodtdavPVQlfDJCrIvhz1hCqtNChtiaGP-Wh4x9fzB2Ms39Kh4fpxUinGkrvziHsbE0knIDIdlpGZUjxKeJVK1ZBprEFXsUtPpfgx3-iI6cA318EpjAECm6kbAq03rkiOMfAGmw1e-C0dHyDDV5TUz0OrydW8oEZbpEBxKGtVEJVKnLiGKW5dBPl7yeKgHUNQ7wydHsBnq9ehcZbKQ07HqAP-LNfy16fqL4n5JMafHTo4hP_KkWiw0ctQ0p-nzVKXqkUDjqmlsRBjUndMZu88LD6VNPZ75AT8W1M27kXoTiVp6CCE3mxxsA-jhk45AIbvG5rOlVpZdLW8p5bGmdyvAbsxgD0VFabVp41zqWBDGyC80ffTK_1ijmTqDhoKg1Ag")
+				.data("Username","RDS580"+System.currentTimeMillis())
+				.data("Password","RDS580")
+				.data("addf","")
 				.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
 				.referrer(urlDecoded)
+				.cookie("acceptcookie", "ok")
+				.cookie("acceptcookiefreecounterstat", "ok")
 				.method(Method.POST)
 				.execute();	
 			final String linesweb = res.body();

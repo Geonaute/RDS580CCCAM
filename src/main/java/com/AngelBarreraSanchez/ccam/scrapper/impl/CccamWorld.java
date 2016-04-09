@@ -17,7 +17,7 @@ import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
  * @author Angel Barrera Sanchez
  */
 public class CccamWorld implements FreeClinesScrapper {
-	private String BASE_URL = "http://cccam-world.ddns.me/index.php";
+	private String BASE_URL = "http://star-cccam.sytes.net/22222/index.php";
 	private String default_hops;
 	
 	private CccamWorld(){}
@@ -40,7 +40,7 @@ public class CccamWorld implements FreeClinesScrapper {
 				.data("pass","RDS580")
 				.data("submit", "Active+User!")
 				.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
-				.referrer(BASE_URL)
+				.referrer("http://star-cccam.sytes.net/")
 				.method(Method.POST)
 				.execute();	
 			final String linesweb = res.body();

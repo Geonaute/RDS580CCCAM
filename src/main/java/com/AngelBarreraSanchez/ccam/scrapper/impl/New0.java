@@ -18,7 +18,7 @@ import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
  */
 public class New0 implements FreeClinesScrapper {
 	
-	private String BASE_URL = "http://cccam-free.com/new0.php";
+	private String BASE_URL = "http://cccamia.com/NEW/new0.php";
 	private String default_hops;
 	
 	private New0(){}
