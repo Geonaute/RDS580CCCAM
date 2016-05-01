@@ -20,15 +20,19 @@ import com.AngelBarreraSanchez.ccam.scrapper.impl.Cgenerator;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Chaherdztv;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Damidi;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.FC003;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.Fullmonsters;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Greencccamfree;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Jokercccam;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.KacSat;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Kahira;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Khaled;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.Localvps;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Madvengers;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Maniaforu;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.New0;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Sat2arab;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Shashatv;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.SpeedCam;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Topreviewapps;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.WebSat;
 import com.AngelBarreraSanchez.ccam.util.ClineTester;
@@ -123,6 +127,18 @@ public class RDS580Application {
 			
 			FreeClinesScrapper kahira = new Kahira(DEFAULT_HOPES);
 			clines.addAll(kahira.getLines());
+			
+			FreeClinesScrapper localvps = new Localvps(DEFAULT_HOPES);
+			clines.addAll(localvps.getLines());
+			
+			FreeClinesScrapper speedCam = new SpeedCam(DEFAULT_HOPES);
+			clines.addAll(speedCam.getLines());
+			
+			FreeClinesScrapper fullmonsters = new Fullmonsters(DEFAULT_HOPES);
+			clines.addAll(fullmonsters.getLines());
+			
+			FreeClinesScrapper kacSat = new KacSat(DEFAULT_HOPES);
+			clines.addAll(kacSat.getLines());
 			
 			for(CCCAMEntity line : clines){
 				if(ClineTester.getInstance().isClineActive(line)){

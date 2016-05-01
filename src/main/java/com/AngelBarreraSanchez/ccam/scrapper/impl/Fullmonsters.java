@@ -12,20 +12,19 @@ import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
 
 /**
  * Implementation of FreeClinesScrapper
- * Get a Cline from http://shasha-tv.blogsyte.com/freecccam/index.php
+ * Get a Cline from http://fullmonsters.zapto.org/cccam-gratuit/js/teste.php
  * @author Angel Barrera Sanchez
  */
-public class Shashatv implements FreeClinesScrapper {
-	
-	private String BASE_URL = "http://shasha-tv.blogsyte.com/freecccam/index.php";
+public class Fullmonsters implements FreeClinesScrapper {
+	private String BASE_URL = "http://fullmonsters.zapto.org/cccam-gratuit/js/teste.php";
 	private String default_hops;
 	
-	private Shashatv(){}
-
+	private Fullmonsters(){}
+	
 	/**
 	 * @param default_hops
 	 */
-	public Shashatv(String default_hops) {
+	public Fullmonsters(String default_hops) {
 		this.default_hops = default_hops;
 	}
 	
@@ -35,25 +34,26 @@ public class Shashatv implements FreeClinesScrapper {
 	public List<CCCAMEntity> getLines() {
 		List<CCCAMEntity> clines = new ArrayList<CCCAMEntity>();
 		try {
+			String user = "RDS580"+System.currentTimeMillis();
+			String pass = "RDS580";
 			Response res = Jsoup.connect(BASE_URL)
-					.data("user","RDS580"+System.currentTimeMillis())
-					.data("pass","hack-sat.net")
-					.data("submit","Active+User!")
-					.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
-					.referrer("http://shasha-tv.blogsyte.com/")
-					.method(Method.POST)
-					.execute();	
-			
+				.data("name",user)
+				.data("surname",pass)
+				.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
+				.referrer(BASE_URL)
+				.method(Method.POST)
+				.execute();	
 			final String linesweb = res.body();
-			final String lineSearch1 = " C: ";
-			final String lineSearch2 = " :|: and it will  expire";
+			String lineSearch1 = "c: ";
+			String lineSearch2 = " </font>";
 			String line = linesweb.substring(linesweb.indexOf(lineSearch1) +  lineSearch1.length(), linesweb.indexOf(lineSearch2,linesweb.indexOf(lineSearch1) +  lineSearch1.length()));
 			line = line.trim();
+			line = line.replace(user, "").replace(pass, "");
 			final String[] tokens = line.split(" ");
 			final String host = tokens[0].trim();
 			final String port = tokens[1].trim();
-			final String user = tokens[2].trim();
-			final String pass = tokens[3].trim();
+//			final String user = tokens[2].trim();
+//			final String pass = tokens[3].trim();
 			clines.add(new CCCAMEntity(host, port, user, pass, default_hops));
 		} catch (Exception e) {
 			System.out.println("Error en " + BASE_URL+ ". " +e.getMessage());
