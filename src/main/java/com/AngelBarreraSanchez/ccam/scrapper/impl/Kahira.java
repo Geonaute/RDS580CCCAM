@@ -3,28 +3,28 @@ package com.AngelBarreraSanchez.ccam.scrapper.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.Connection.Method;
-import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import com.AngelBarreraSanchez.ccam.CCCAMEntity;
 import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
 
 /**
  * Implementation of FreeClinesScrapper
- * Get a Cline from http://universalcccam.ddns.net/here/inside.php
+ * Get a Cline from http://kahira.no-ip.org/index.php
  * @author Angel Barrera Sanchez
  */
-public class Universalcccam implements FreeClinesScrapper {
-	private String BASE_URL = "http://universalcccam.ddns.net/here/inside.php";
+public class Kahira implements FreeClinesScrapper {
+	
+	private String BASE_URL = "http://kahira.no-ip.org/index.php";
 	private String default_hops;
 	
-	private Universalcccam(){}
-	
+	private Kahira(){}
+
 	/**
 	 * @param default_hops
 	 */
-	public Universalcccam(String default_hops) {
+	public Kahira(String default_hops) {
 		this.default_hops = default_hops;
 	}
 	
@@ -34,16 +34,16 @@ public class Universalcccam implements FreeClinesScrapper {
 	public List<CCCAMEntity> getLines() {
 		List<CCCAMEntity> clines = new ArrayList<CCCAMEntity>();
 		try {
-			Response res = Jsoup.connect(BASE_URL)
-				.data("user","RDS580"+System.currentTimeMillis())
-				.data("pass","RDS580")
-				.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
-				.referrer(BASE_URL)
-				.method(Method.POST)
-				.execute();	
-			final String linesweb = res.body();
-			String lineSearch1 = "C: ";
-			String lineSearch2 = " \" and it will  expire=";
+			final Document doc = Jsoup.connect(BASE_URL)
+					.data("user","RDS580"+System.currentTimeMillis())
+					.data("pass","RDS580")
+					.data("submit","Active+User!")
+					.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
+					.referrer("http://kahira.no-ip.org/index.php")
+					.post();	
+			final String linesweb = doc.html();
+			final String lineSearch1 = "C: ";
+			final String lineSearch2 = " :|: and it will";
 			String line = linesweb.substring(linesweb.indexOf(lineSearch1) +  lineSearch1.length(), linesweb.indexOf(lineSearch2,linesweb.indexOf(lineSearch1) +  lineSearch1.length()));
 			line = line.trim();
 			final String[] tokens = line.split(" ");

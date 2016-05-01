@@ -17,7 +17,7 @@ import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
  * @author Angel Barrera Sanchez
  */
 public class Cgenerator implements FreeClinesScrapper {
-	private String BASE_URL = "http://c-generator.blogsyte.com/freee/index.php";
+	private String BASE_URL = "http://c-generator.blogsyte.com/users/index.php";
 	private String default_hops;
 	
 	private Cgenerator(){}
