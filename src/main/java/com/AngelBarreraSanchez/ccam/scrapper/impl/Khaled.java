@@ -16,7 +16,7 @@ import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
  * @author Angel Barrera Sanchez
  */
 public class Khaled implements FreeClinesScrapper {
-	private String BASE_URL = "http://khaled-sat.ddns.net/gc/index.php";
+	private String BASE_URL = "http://server.khaled-sat.net/gc/index.php";
 	private String default_hops;
 	
 	private Khaled(){}
@@ -28,6 +28,11 @@ public class Khaled implements FreeClinesScrapper {
 		this.default_hops = default_hops;
 	}
 	
+	public static void main(String[] args) {
+		Khaled k = new Khaled();
+		k.getLines();
+	}
+	
 	/**
 	 * Implementation method
 	 */
@@ -37,14 +42,13 @@ public class Khaled implements FreeClinesScrapper {
 		try {
 			Response res = Jsoup.connect(BASE_URL)
 				.data("user",System.currentTimeMillis()+"")
-				.data("pass","RDS580")
 				.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
 				.referrer(BASE_URL)
 				.method(Method.POST)
 				.execute();	
 			linesweb = res.body();
 			String lineSearch1 = " C: ";
-			String lineSearch2 = " :|: and it will  expire";
+			String lineSearch2 = " :|: and it will";
 			String line = linesweb.substring(linesweb.indexOf(lineSearch1) +  lineSearch1.length(), linesweb.indexOf(lineSearch2,linesweb.indexOf(lineSearch1) +  lineSearch1.length()));
 			line = line.trim();
 			final String[] tokens = line.split(" ");

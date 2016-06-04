@@ -15,13 +15,17 @@ import com.AngelBarreraSanchez.ccam.scrapper.impl.AllCccam;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.BambooCCcam;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.BossCCcamEMAIL;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.CccamWorld;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.Cccamcafard;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.Cccamcafard2;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Cccamgenerator;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Cgenerator;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Chaherdztv;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Damidi;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.EuroccEMAIL;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.FC003;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Fullmonsters;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Greencccamfree;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.Hacksat;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Jokercccam;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.KacSat;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Kahira;
@@ -33,6 +37,7 @@ import com.AngelBarreraSanchez.ccam.scrapper.impl.New0;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Sat2arab;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Shashatv;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.SpeedCam;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.Sudansat;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Topreviewapps;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.WebSat;
 import com.AngelBarreraSanchez.ccam.util.ClineTester;
@@ -139,6 +144,21 @@ public class RDS580Application {
 			
 			FreeClinesScrapper kacSat = new KacSat(DEFAULT_HOPES);
 			clines.addAll(kacSat.getLines());
+			
+			FreeClinesScrapper sudansat = new Sudansat(DEFAULT_HOPES);
+			clines.addAll(sudansat.getLines());
+			
+			FreeClinesScrapper cccamcafard = new Cccamcafard(DEFAULT_HOPES);
+			clines.addAll(cccamcafard.getLines());
+			
+			FreeClinesScrapper cccamcafard2 = new Cccamcafard2(DEFAULT_HOPES);
+			clines.addAll(cccamcafard2.getLines());
+			
+			FreeClinesScrapper euroccEMAIL = new EuroccEMAIL(DEFAULT_HOPES);
+			clines.addAll(euroccEMAIL.getLines());
+			
+			FreeClinesScrapper hacksat = new Hacksat(DEFAULT_HOPES);
+			clines.addAll(hacksat.getLines());
 			
 			for(CCCAMEntity line : clines){
 				if(ClineTester.getInstance().isClineActive(line)){

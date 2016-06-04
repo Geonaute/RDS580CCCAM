@@ -17,9 +17,9 @@ import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
  */
 public class AllCccam implements FreeClinesScrapper {
 	
-	private String BASE_URL_1 = "http://www.allcccam.com/serv1r.php";
-	private String BASE_URL_2 = "http://www.allcccam.com/serv2r.php";
-	private String BASE_URL_3 = "http://www.allcccam.com/serv3r.php";
+	private String BASE_URL_1 = "https://www.allcccam.com/serv1f.php";
+	private String BASE_URL_2 = "https://www.allcccam.com/serv2g.php";
+	private String BASE_URL_3 = "https://www.allcccam.com/serv3g.php";
 	private String[] urls = new String[]{BASE_URL_1,BASE_URL_2,BASE_URL_3};
 	
 	
@@ -50,6 +50,7 @@ public class AllCccam implements FreeClinesScrapper {
 					.cookie("__tawkuuid", "e||allcccam.com||dX5vawb1XExR4Beu3Ed1gsKsP9IjFQJVdsu5wLqVBYKB3XcqA8BMpsyVz4ssCpSr||2")
 					.cookie("Tawk_55ce514ebad2fd7a51426ae5", "vs15.tawk.to:443||0\"")
 					.method(Method.GET)
+					.validateTLSCertificates(false)
 					.execute();	
 				final String linesweb = res.body();
 				String lineSearch1 = "<FONT COLOR=\"#00FF0D\"> C: ";

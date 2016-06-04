@@ -31,6 +31,11 @@ public class WebSat implements FreeClinesScrapper {
 		this.default_hops = default_hops;
 	}
 	
+	public static void main(String[] args) {
+		WebSat w = new WebSat();
+		w.getLines();
+	}
+	
 	/**
 	 * Implementation method
 	 */
@@ -46,16 +51,18 @@ public class WebSat implements FreeClinesScrapper {
 			Elements forms = doc1.getElementsByClass("bouton");
 			String url = forms.get(0).attr("href");
 			
-			String urlDecoded = AdflyDecode.getInstance().decode(url);
+//			String urlDecoded = AdflyDecode.getInstance().decode(url);
+			String urlDecoded = url;
 			
-			Response res = Jsoup.connect(urlDecoded)
+			Response res = Jsoup.connect(BASE_URL+urlDecoded)
 				.data("Username","RDS580"+System.currentTimeMillis())
 				.data("Password","RDS580")
 				.data("addf","")
 				.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
 				.referrer(urlDecoded)
-				.cookie("acceptcookie", "ok")
-				.cookie("acceptcookiefreecounterstat", "ok")
+				.cookies(res1.cookies())
+//				.cookie("acceptcookie", "ok.")
+//				.cookie("acceptcookiefreecounterstat", "ok")
 				.method(Method.POST)
 				.execute();	
 			final String linesweb = res.body();
