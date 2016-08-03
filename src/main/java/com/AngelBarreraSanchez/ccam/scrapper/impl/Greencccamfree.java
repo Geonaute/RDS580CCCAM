@@ -16,7 +16,7 @@ import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
  * @author Willyn
  */
 public class Greencccamfree implements FreeClinesScrapper {
-	private String BASE_URL = "http://greencccamfree.ddns.net/genf.php";
+	private String BASE_URL = "http://greencccamfree.ddns.net/genf2.php";
 	private String default_hops;
 	
 	private Greencccamfree(){}

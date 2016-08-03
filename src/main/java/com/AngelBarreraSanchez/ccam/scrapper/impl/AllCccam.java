@@ -17,10 +17,9 @@ import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
  */
 public class AllCccam implements FreeClinesScrapper {
 	
-	private String BASE_URL_1 = "https://www.allcccam.com/serv1f.php";
-	private String BASE_URL_2 = "https://www.allcccam.com/serv2g.php";
-	private String BASE_URL_3 = "https://www.allcccam.com/serv3g.php";
-	private String[] urls = new String[]{BASE_URL_1,BASE_URL_2,BASE_URL_3};
+	private String BASE_URL_1 = "https://www.allcccam.com/serv1h.php";
+	private String BASE_URL_2 = "https://www.allcccam.com/serk2r.php";
+	private String[] urls = new String[]{BASE_URL_1,BASE_URL_2};
 	
 	
 	private String default_hops;

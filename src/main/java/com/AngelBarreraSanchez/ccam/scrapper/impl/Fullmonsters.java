@@ -16,7 +16,7 @@ import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
  * @author Angel Barrera Sanchez
  */
 public class Fullmonsters implements FreeClinesScrapper {
-	private String BASE_URL = "http://fullmonsters.zapto.org/cccam-gratuit/js/teste1.php";
+	private String BASE_URL = "http://fullmonsters2.zapto.org/cccam-gratuit/js/catalonia.php";
 	private String default_hops;
 	
 	private Fullmonsters(){}

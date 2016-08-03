@@ -7,6 +7,7 @@ import org.jsoup.Connection.Method;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.AngelBarreraSanchez.ccam.CCCAMEntity;
@@ -32,7 +33,7 @@ public class WebSat implements FreeClinesScrapper {
 	}
 	
 	public static void main(String[] args) {
-		WebSat w = new WebSat();
+		WebSat w = new WebSat("0");
 		w.getLines();
 	}
 	
@@ -54,8 +55,25 @@ public class WebSat implements FreeClinesScrapper {
 //			String urlDecoded = AdflyDecode.getInstance().decode(url);
 			String urlDecoded = url;
 			
-			Response res = Jsoup.connect(BASE_URL+urlDecoded)
-				.data("Username","RDS580"+System.currentTimeMillis())
+			
+			Response res11 = Jsoup.connect(BASE_URL+urlDecoded)
+					.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
+					.referrer(BASE_URL)
+					.method(Method.GET)
+					.cookies(res1.cookies())
+					.execute();
+			
+			doc1 = Jsoup.parse(res11.body());
+			Elements metas = doc1.head().getElementsByTag("META");
+			for(Element meta : metas){
+				if(meta.attr("content").contains("URL=")){
+					urlDecoded = meta.attr("content").substring(meta.attr("content").indexOf("URL=")+4);
+				}
+			}
+			
+			
+			Response res = Jsoup.connect(BASE_URL+urlDecoded+"/")
+				.data("Username","RDS"+(System.currentTimeMillis()+"").substring(4))
 				.data("Password","RDS580")
 				.data("addf","")
 				.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
@@ -67,7 +85,7 @@ public class WebSat implements FreeClinesScrapper {
 				.execute();	
 			final String linesweb = res.body();
 			String lineSearch1 = "C: ";
-			String lineSearch2 = " </b>";
+			String lineSearch2 = "</FONT>";
 			String line = linesweb.substring(linesweb.indexOf(lineSearch1) +  lineSearch1.length(), linesweb.indexOf(lineSearch2,linesweb.indexOf(lineSearch1) +  lineSearch1.length()));
 			line = line.trim();
 			final String[] tokens = line.split(" ");

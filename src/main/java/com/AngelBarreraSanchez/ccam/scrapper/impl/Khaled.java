@@ -28,11 +28,6 @@ public class Khaled implements FreeClinesScrapper {
 		this.default_hops = default_hops;
 	}
 	
-	public static void main(String[] args) {
-		Khaled k = new Khaled();
-		k.getLines();
-	}
-	
 	/**
 	 * Implementation method
 	 */

@@ -80,10 +80,11 @@ public class CCcamConnector {
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			e.printStackTrace();
+		}finally{
+			socket.close();
+			is.close();
+			os.close();
 		}
-		socket.close();
-		is.close();
-		os.close();
 		return false;
 	}
 

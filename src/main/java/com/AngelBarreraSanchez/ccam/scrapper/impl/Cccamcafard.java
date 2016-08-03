@@ -11,7 +11,7 @@ import com.AngelBarreraSanchez.ccam.CCCAMEntity;
 import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
 
 public class Cccamcafard implements FreeClinesScrapper {
-	private String BASE_URL = "http://generator.cccamcafard.com/48/index.php";
+	private String BASE_URL = "http://generator.cccamcafard.com/v6x24qm7h24/index.php";
 	
 	
 	private String default_hops;
@@ -25,11 +25,6 @@ public class Cccamcafard implements FreeClinesScrapper {
 		this.default_hops = default_hops;
 	}
 	
-	public static void main(String[] args) {
-		Cccamcafard c = new Cccamcafard();
-		c.getLines();
-	}
-	
 	/**
 	 * Implementation method
 	 */
@@ -37,9 +32,8 @@ public class Cccamcafard implements FreeClinesScrapper {
 		List<CCCAMEntity> clines = new ArrayList<CCCAMEntity>();
 		try {
 			Response res = Jsoup.connect(BASE_URL)
-				.data("user","RDS580"+System.currentTimeMillis())
-				.data("pass", "cccamcafard.com")
-				.data("submit", "Activate!")
+				.data("username","RDS580"+System.currentTimeMillis())
+				.data("add_user", "")
 				.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
 				.referrer(BASE_URL)
 				.method(Method.POST)
