@@ -10,18 +10,18 @@ import org.jsoup.Connection.Response;
 import com.AngelBarreraSanchez.ccam.CCCAMEntity;
 import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
 
-public class Cccamcafard2 implements FreeClinesScrapper {
-	private String BASE_URL = "http://generator.cccamcafard.com/cpbgjh3a48/index.php";
+public class GlobalServerHD implements FreeClinesScrapper {
+	private String BASE_URL = "http://global.server-hd.org/index.php";
 	
 	
 	private String default_hops;
 	
-	private Cccamcafard2(){}
+	private GlobalServerHD(){}
 	
 	/**
 	 * @param default_hops
 	 */
-	public Cccamcafard2(String default_hops) {
+	public GlobalServerHD(String default_hops) {
 		this.default_hops = default_hops;
 	}
 	
@@ -32,16 +32,16 @@ public class Cccamcafard2 implements FreeClinesScrapper {
 		List<CCCAMEntity> clines = new ArrayList<CCCAMEntity>();
 		try {
 			Response res = Jsoup.connect(BASE_URL)
-				.data("user","RDS580"+System.currentTimeMillis())
-				.data("pass", "RDS580")
-				.data("submit", "Activate!")
+				.data("user","RDS580"+ (System.currentTimeMillis()+"").substring(10))
+				.data("pass","RDS580")
+				.data("submit", "Active+User!")
 				.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
 				.referrer(BASE_URL)
 				.method(Method.POST)
 				.execute();	
 			final String linesweb = res.body();
 			String lineSearch1 = "C: ";
-			String lineSearch2 = " </FONT>";
+			String lineSearch2 = " <br>";
 			String line = linesweb.substring(linesweb.indexOf(lineSearch1) +  lineSearch1.length(), linesweb.indexOf(lineSearch2,linesweb.indexOf(lineSearch1) +  lineSearch1.length()));
 			line = line.trim();
 			final String[] tokens = line.split(" ");

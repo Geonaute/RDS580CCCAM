@@ -32,11 +32,6 @@ public class WebSat implements FreeClinesScrapper {
 		this.default_hops = default_hops;
 	}
 	
-	public static void main(String[] args) {
-		WebSat w = new WebSat("0");
-		w.getLines();
-	}
-	
 	/**
 	 * Implementation method
 	 */
@@ -53,10 +48,13 @@ public class WebSat implements FreeClinesScrapper {
 			String url = forms.get(0).attr("href");
 			
 //			String urlDecoded = AdflyDecode.getInstance().decode(url);
+			if(url.startsWith("/")){
+				url = url.substring(1);
+			}
 			String urlDecoded = url;
 			
 			
-			Response res11 = Jsoup.connect(BASE_URL+urlDecoded)
+			Response res11 = Jsoup.connect(BASE_URL+"/"+urlDecoded)
 					.userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0")
 					.referrer(BASE_URL)
 					.method(Method.GET)
@@ -70,9 +68,11 @@ public class WebSat implements FreeClinesScrapper {
 					urlDecoded = meta.attr("content").substring(meta.attr("content").indexOf("URL=")+4);
 				}
 			}
+			if(urlDecoded.startsWith("/")){
+				urlDecoded = urlDecoded.substring(1);
+			}
 			
-			
-			Response res = Jsoup.connect(BASE_URL+urlDecoded+"/")
+			Response res = Jsoup.connect(BASE_URL+"/"+urlDecoded+"/")
 				.data("Username","RDS"+(System.currentTimeMillis()+"").substring(4))
 				.data("Password","RDS580")
 				.data("addf","")

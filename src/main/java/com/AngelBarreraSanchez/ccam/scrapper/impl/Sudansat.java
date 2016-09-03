@@ -25,11 +25,6 @@ public class Sudansat implements FreeClinesScrapper {
 		this.default_hops = default_hops;
 	}
 	
-	public static void main(String[] args) {
-		Sudansat s = new Sudansat();
-		s.getLines();
-	}
-	
 	/**
 	 * Implementation method
 	 */

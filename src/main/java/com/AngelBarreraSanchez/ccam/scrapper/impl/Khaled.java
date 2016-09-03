@@ -16,7 +16,7 @@ import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
  * @author Angel Barrera Sanchez
  */
 public class Khaled implements FreeClinesScrapper {
-	private String BASE_URL = "http://server.khaled-sat.net/gc/index.php";
+	private String BASE_URL = "http://server.khaled-sat.net/index.php";
 	private String default_hops;
 	
 	private Khaled(){}

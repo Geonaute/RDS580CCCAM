@@ -14,16 +14,19 @@ import com.AngelBarreraSanchez.ccam.scrapper.FreeClinesScrapper;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.AllCccam;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.BambooCCcam;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.BossCCcamEMAIL;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.Cccam24h;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Cccamcafard;
-import com.AngelBarreraSanchez.ccam.scrapper.impl.Cccamcafard2;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Cccamgenerator;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.EuroccEMAIL;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.Freecline;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Fullmonsters;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.GlobalServerHD;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Greencccamfree;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Khaled;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Madvengers;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.New0;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Sat2arab;
+import com.AngelBarreraSanchez.ccam.scrapper.impl.Smart4;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.SpeedCam;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.Sudansat;
 import com.AngelBarreraSanchez.ccam.scrapper.impl.WebSat;
@@ -74,7 +77,7 @@ public class RDS580Application {
 			
 			FreeClinesScrapper bossCCcamEMAIL = new BossCCcamEMAIL(DEFAULT_HOPES);
 			clines.addAll(bossCCcamEMAIL.getLines());
-			
+			//SLOW
 			FreeClinesScrapper sat2arab = new Sat2arab(DEFAULT_HOPES);
 			clines.addAll(sat2arab.getLines());
 			
@@ -99,24 +102,32 @@ public class RDS580Application {
 			FreeClinesScrapper cccamcafard = new Cccamcafard(DEFAULT_HOPES);
 			clines.addAll(cccamcafard.getLines());
 			
-			FreeClinesScrapper cccamcafard2 = new Cccamcafard2(DEFAULT_HOPES);
-			clines.addAll(cccamcafard2.getLines());
-			
 			FreeClinesScrapper euroccEMAIL = new EuroccEMAIL(DEFAULT_HOPES);
 			clines.addAll(euroccEMAIL.getLines());
 			
+			FreeClinesScrapper smart4 = new Smart4(DEFAULT_HOPES);
+			clines.addAll(smart4.getLines());
+			
 			//NOT WORK
-//			FreeClinesScrapper hacksat = new Freecline(DEFAULT_HOPES);
-//			clines.addAll(hacksat.getLines());
-//			
+//			FreeClinesScrapper freecline = new Freecline(DEFAULT_HOPES);
+//			clines.addAll(freecline.getLines());
+			
+			FreeClinesScrapper c24 = new Cccam24h(DEFAULT_HOPES);
+			clines.addAll(c24.getLines());
+			
+			FreeClinesScrapper globalServerHD = new GlobalServerHD(DEFAULT_HOPES);
+			clines.addAll(globalServerHD.getLines());
+
 			for(CCCAMEntity line : clines){
-//				System.out.println("@@@@ " + line);
+				long ini = System.currentTimeMillis();
+				System.out.println("@@@@ " + line);
 				if(clinesOnline.size()<16 && ClineTester.getInstance().isClineActive(line)){
-//					System.out.println("OK ->" + line);
+					System.out.println("OK ->" + line);
 					clinesOnline.add(line);
 				}else{
-//					System.out.println("KO ->" + line);
+					System.out.println("KO ->" + line);
 				}
+				System.out.println("TIEMPO: " + ((System.currentTimeMillis())-ini) + " ms");
 			}
 			
 			CCCAMFileGenerator fileGen = null;
